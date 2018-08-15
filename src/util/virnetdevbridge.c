@@ -136,9 +136,11 @@ static int virNetDevBridgeSet(const char *brname,
         char valuestr[INT_BUFSIZE_BOUND(value)];
         snprintf(valuestr, sizeof(valuestr), "%lu", value);
         if (virFileWriteStr(path, valuestr, 0) < 0) {
+            /*
             virReportSystemError(errno,
                                  _("Unable to set bridge %s %s"), brname, paramname);
             goto cleanup;
+            */
         }
     } else {
         unsigned long paramid;
