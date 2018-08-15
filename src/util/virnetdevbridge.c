@@ -149,14 +149,14 @@ static int virNetDevBridgeSet(const char *brname,
         } else {
             virReportSystemError(EINVAL,
                                  _("Unable to set bridge %s %s"), brname, paramname);
-            goto cleanup;
+            //goto cleanup;
         }
         unsigned long args[] = { paramid, value, 0, 0 };
         ifr->ifr_data = (char*)&args;
         if (ioctl(fd, SIOCDEVPRIVATE, ifr) < 0) {
             virReportSystemError(errno,
                                  _("Unable to set bridge %s %s"), brname, paramname);
-            goto cleanup;
+            //goto cleanup;
         }
     }
 
@@ -204,7 +204,7 @@ static int virNetDevBridgeGet(const char *brname,
         if (ioctl(fd, SIOCDEVPRIVATE, ifr) < 0) {
             virReportSystemError(errno,
                                  _("Unable to get bridge %s %s"), brname, paramname);
-            goto cleanup;
+            //goto cleanup;
         }
 
         if (STREQ(paramname, "stp_state")) {
@@ -214,7 +214,7 @@ static int virNetDevBridgeGet(const char *brname,
         } else {
             virReportSystemError(EINVAL,
                                  _("Unable to get bridge %s %s"), brname, paramname);
-            goto cleanup;
+            //goto cleanup;
         }
     }
 
